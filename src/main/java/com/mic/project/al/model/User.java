@@ -2,6 +2,7 @@ package com.mic.project.al.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * Created by veena on 23/12/17.
@@ -10,35 +11,28 @@ import java.io.Serializable;
 @Table(name = "user_details")
 
 public class User implements Serializable{
+    private Long id;
+    private String username;
+    private String password;
+    private String passwordConfirm;
+    private Set<Role> roles;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
-    @Column(name = "user_name")
-    private String userName;
-
-    @Column(name = "user_password")
-    private String password;
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "email")
-    private String email;
-
-    public User() {
-
+    public Long getId() {
+        return id;
     }
 
-    public User(String userName, String password, String firstName, String lastName, String email) {
-        this.userName = userName;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -49,48 +43,22 @@ public class User implements Serializable{
         this.password = password;
     }
 
-    public long getId() {
-        return id;
+    @Transient
+    public String getPasswordConfirm() {
+        return passwordConfirm;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 
-    public String getUserName() {
-        return userName;
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" + "id=" + id + ", userName='" + userName + '\'' + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", email='" + email + '\'' + '}';
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
