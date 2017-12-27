@@ -13,8 +13,11 @@ import java.util.Set;
 public class User implements Serializable{
     private Long id;
     private String username;
+    private String firstname;
+    private String lastname;
     private String password;
     private String passwordConfirm;
+    private String email;
     private Set<Role> roles;
 
     @Id
@@ -50,6 +53,30 @@ public class User implements Serializable{
 
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @ManyToMany
