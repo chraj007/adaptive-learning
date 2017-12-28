@@ -29,21 +29,27 @@
 <body>
 
 <div class="container">
-<span>${message}</span>
 
     <form:form method="POST" modelAttribute="questionnaireForm" class="form-signin">
     <form:hidden path="id" />
 
         <h2 class="form-signin-radio">Questionnaire</h2>
-        <spring:bind path="q1">
+        <div class="form-group">
+
+            <spring:bind path="q1">
                     <div class="form-group ">
-                    <p>Q1. Are you crazy</p>
-                       <form:radiobutton path="q1" value="Yes"/>Yes
-                       <form:radiobutton path="q1" value="No"/>No
+                    <label for="q1">Q1. Are you crazy</label><br/>
+                       <label class="radio-inline"><form:radiobutton path="q1" value="Yes"/>Yes</label>
+                       <label class="radio-inline"><form:radiobutton path="q1" value="No"/>No</label>
                     </div>
                 </spring:bind>
+        </div>
 
-
+        <c:if test="${not empty message}">
+            <div class="alert alert-success">
+              <strong>${message}</strong>
+            </div>
+        </c:if>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form:form>
 
