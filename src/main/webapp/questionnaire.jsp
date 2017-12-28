@@ -33,48 +33,12 @@
     <form:form method="POST" modelAttribute="questionnaireForm" class="form-signin">
         <h2 class="form-signin-radio">Questionnaire</h2>
         <spring:bind path="q1">
-            <div class="form-group ${status.error ? 'has-error' : ''}"
-                <form:input type="radio" path="q1" class="form-control">Question1</form:input>
-
-            </div>
-        </spring:bind>
-
-        <spring:bind path="q2">
-            <div class="radio ${status.error ? 'has-error' : ''}">
-                <form:input type="radio" path="q2" class="form-control">Question2</form:input>
-
-            </div>
-        </spring:bind>
-
-        <spring:bind path="q3">
-                    <div class="radio ${status.error ? 'has-error' : ''}">
-                        <form:input type="radio" path="q3" class="form-control" >Question3</form:input>
-
+                    <div class="form-group ">
+                    <p>Q1. Are you crazy</p>
+                       <form:radiobutton path="q1" value="Yes"/>Yes
+                       <form:radiobutton path="q1" value="No"/>No
                     </div>
                 </spring:bind>
-
-
-        <spring:bind path="q4">
-            <div class="radio ${status.error ? 'has-error' : ''}">
-                <form:input type="radio" path="q4" class="form-control">Question4</form:input>
-
-            </div>
-        </spring:bind>
-
-        <spring:bind path="q5">
-            <div class="radio ${status.error ? 'has-error' : ''}">
-                <form:input type="password" path="q5" class="form-control">Question5</form:input>
-                <form:errors path="passwordConfirm"></form:errors>
-            </div>
-        </spring:bind>
-
-      <spring:bind path="q6">
-                <div class="radio ${status.error ? 'has-error' : ''}">
-                    <form:input type="radio" name="q6" class="form-control">
-                               Question6 </form:input>
-
-                </div>
-            </spring:bind>
 
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
