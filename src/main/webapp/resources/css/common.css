@@ -19,6 +19,10 @@ body {
     font-weight: normal;
 }
 
+.form-signin.radio{
+    font-weight:normal;
+ }
+
 .form-signin .form-control {
     position: relative;
     height: auto;

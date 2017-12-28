@@ -1,5 +1,6 @@
 package com.mic.project.al.web;
 
+import com.mic.project.al.model.Questionnaire;
 import com.mic.project.al.model.User;
 import com.mic.project.al.service.SecurityService;
 import com.mic.project.al.service.UserService;
@@ -24,7 +25,6 @@ public class UserController {
     private UserValidator userValidator;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-   // @RequestMapping(value = "/questionnaire",method=RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
 
@@ -58,7 +58,22 @@ public class UserController {
         return "login";
     }
 
+    @RequestMapping(value = "/questionaire", method=RequestMethod.GET)
+    public String questionnaire(Model model){
 
+        model.addAttribute("questionnaireForm", new Questionnaire());
+
+        return "questionnaire";
+
+    }
+
+    @RequestMapping(value = "/questionnaire",method = RequestMethod.POST)
+    public String questionnaire(@ModelAttribute Questionnaire questionnaireForm,Model model){
+
+
+        return "Questionnaire submitted";
+
+    }
 
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
