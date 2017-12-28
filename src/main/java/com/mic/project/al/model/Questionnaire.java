@@ -15,8 +15,8 @@ public class Questionnaire implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "user_id")
-    private String userId;
+    @Column(name = "user_name", unique = true, nullable = false)
+    private String userName;
 
     @Column(name ="q1")
     private String q1;
@@ -26,6 +26,7 @@ public class Questionnaire implements Serializable {
 
     @Column(name ="q3")
     private String q3;
+
 
     @Column(name ="q4")
     private String q4;
@@ -139,12 +140,12 @@ public class Questionnaire implements Serializable {
     private String q40;
 
 
-    public String getUserId() {
-        return userId;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getQ1() {

@@ -2,6 +2,7 @@ package com.mic.project.al.web;
 
 import com.mic.project.al.model.Questionnaire;
 import com.mic.project.al.model.User;
+import com.mic.project.al.service.QuessionaireService;
 import com.mic.project.al.service.SecurityService;
 import com.mic.project.al.service.UserService;
 import com.mic.project.al.validator.UserValidator;
@@ -23,6 +24,9 @@ public class UserController {
     private SecurityService securityService;
 
     @Autowired
+    private QuessionaireService quessionaireService;
+
+    @Autowired
     private UserValidator userValidator;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
@@ -32,7 +36,6 @@ public class UserController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
 
@@ -58,20 +61,25 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = "/questionaire", method=RequestMethod.GET)
-    public String questionnaire(Model model){
-
-        model.addAttribute("questionnaireForm", new Questionnaire());
+    @RequestMapping(value = "/questionnaire", method = RequestMethod.GET)
+    public String questionnaire(Model model) {
+        org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Questionnaire questionnaire = quessionaireService.findByUserName(user.getUsername());
+        questionnaire = questionnaire == null ? new Questionnaire() : questionnaire;
+        model.addAttribute("questionnaireForm", questionnaire);
 
         return "questionnaire";
 
     }
 
-    @RequestMapping(value = "/questionnaire",method = RequestMethod.POST)
-    public String questionnaire(@ModelAttribute Questionnaire questionnaireForm,Model model){
-
-
-        return "Questionnaire submitted";
+    @RequestMapping(value = "/questionnaire", method = RequestMethod.POST)
+    public String questionnaire(@ModelAttribute Questionnaire questionnaireForm, Model model) {
+        org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        questionnaireForm.setUserName(user.getUsername());
+        quessionaireService.save(questionnaireForm);
+        model.addAttribute("message", "Successfully submitted quessionaire");
+        model.addAttribute("questionnaireForm", questionnaireForm);
+        return "questionnaire";
 
     }
 

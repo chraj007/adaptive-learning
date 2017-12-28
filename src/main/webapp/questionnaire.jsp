@@ -29,8 +29,11 @@
 <body>
 
 <div class="container">
+<span>${message}</span>
 
     <form:form method="POST" modelAttribute="questionnaireForm" class="form-signin">
+    <form:hidden path="id" />
+
         <h2 class="form-signin-radio">Questionnaire</h2>
         <spring:bind path="q1">
                     <div class="form-group ">

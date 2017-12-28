@@ -8,5 +8,5 @@ import org.springframework.data.repository.CrudRepository;
  * Created by veena on 28/12/17.
  */
 public interface QuesionaireRepository extends CrudRepository<Questionnaire, Long> {
-    Questionnaire findByUserId(String userId);
+    Questionnaire findByUserName(String userName);
 }
