@@ -20,9 +20,9 @@ package com.mic.project.al.web;
 public class UploadController {
 
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "F://temp//";
+    private static String UPLOADED_FOLDER = "/home/veena/uploadedFiles";
 
-    @GetMapping("/")
+    @GetMapping("/upload")
     public String index() {
         return "upload";
     }

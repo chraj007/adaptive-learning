@@ -30,7 +30,7 @@ html lang="en">
     <form:form method="POST" action="/upload" enctype="multipart/form-data"   modelAttribute="fileuploadForm" class="form-signin">
 
         <h1 class="form-signin-radio">Spring Boot file upload example</h1>
-            <spring:bind path="file">
+            <spring:bind path="file" value="upload">
                     <div class="form-group">
                     <form:file path="file" /><br/><br/>
                     </div>
