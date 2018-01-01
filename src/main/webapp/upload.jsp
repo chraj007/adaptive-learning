@@ -3,7 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
-html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,16 +26,10 @@ html lang="en">
 <body>
 <div class="container">
 
-    <form:form method="POST" action="/upload" enctype="multipart/form-data"   modelAttribute="fileuploadForm" class="form-signin">
-
-        <h1 class="form-signin-radio">Spring Boot file upload example</h1>
-            <spring:bind path="file" value="upload">
-                    <div class="form-group">
-                    <form:file path="file" /><br/><br/>
-                    </div>
-            </spring:bind>
-     <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
- </form:form>
+    <form:form method="POST" action="/upload" enctype="multipart/form-data">
+        <input type="file" name="file" /><br/><br/>
+        <input type="submit" value="Submit" />
+    </form:form>
 
 </div>
 <!-- /container -->
