@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Create an account</title>
+    <title>UserProfile</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
 
@@ -27,15 +27,14 @@
 <div class="container">
 
     <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <form id="logoutForm" method="POST" action="${contextPath}/logout">
+        <form id="userProfile" method="POST" modelAttribute="userprofile" action="${contextPath}/userprofile">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
+        <h2>${pageContext.request.userPrincipal.name}</h2><br>
 
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
-
-        <h4 class="text-center"><a href="${contextPath}/questionnaire">Questionnaire</a></h4>
-         <h4 class="text-center"><a href="${contextPath}/upload">Upload File</a></h4>
-         <h4 class="text-center"><a href="${contextPath}/userprofile">User Profile</a></h4>
+         <h4 class="text-center"><a href="${contextPath}/password">change password</a></h4>
+         <h4 class="text-center"><a href="${contextPath}/filelist">view list of Files</a></h4>
+         <h4 class="text-center"><a href="${contextPath}/changelstyle">Change Learning styles</a></h4>
     </c:if>
 
 </div>

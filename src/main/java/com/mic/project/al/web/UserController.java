@@ -83,6 +83,21 @@ public class UserController {
 
     }
 
+    @RequestMapping(value = "/userprofile", method = RequestMethod.GET)
+    public String userProfile(Model model){
+        org.springframework.security.core.userdetails.User userprofile = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user1=userService.findByUsername(userprofile.getUsername());
+        model.addAttribute("userprofileForm",user1);
+        return "userprofile";
+    }
+
+    @RequestMapping(value = "/userprofile", method = RequestMethod.POST)
+    public String userProfile(@ModelAttribute User user ,Model model){
+        org.springframework.security.core.userdetails.User userprofile = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("userprofileForm",user);
+        return "userprofile";
+    }
+
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {

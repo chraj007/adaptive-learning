@@ -54,7 +54,7 @@
           <spring:bind path="q3">
                           <div class="form-group">
                           <p>Q3.I tend to solve problems using a step-by-step approach. </p>
-                              <frm:radiobutton path="q3" value="Yes"/>Yes
+                              <form:radiobutton path="q3" value="Yes"/>Yes
                               <form:radiobutton path="q3" value="No"/>No
                               </div>
                     </spring:bind>
@@ -85,7 +85,7 @@
                     <div class="form-group ">
                     <p>Q7.I like the sort of work where I have time for thorough preparation and
                           implementation. </p>
-                    <for:radiobutton path="q7" value="Yes"/>Yes
+                    <form:radiobutton path="q7" value="Yes"/>Yes
                     <form:radiobutton path="q7" value="No"/>No
                     </div>
              </spring:bind>
@@ -137,7 +137,7 @@
             <div class="form-group ">
             <p>Q14.I get on best with logical, analytical people and less well with spontaneous
                    ‘irrational’ people. </p>
-            <form:adiobutton path="q14" value="Yes"/>Yes
+            <form:radiobutton path="q14" value="Yes"/>Yes
             <form:radiobutton path="q14" value="No"/>No
             </div>
          </spring:bind>
