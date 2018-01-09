@@ -33,6 +33,27 @@
         <h2>${pageContext.request.userPrincipal.name}</h2><br>
 
          <h4 class="text-center"><a href="${contextPath}/password">change password</a></h4>
+         <spring:bind path="password">
+                     <div class="form-group ${status.error ? 'has-error' : ''}">
+                         <form:input type="password" path="password" class="form-control" placeholder="Password"></form:input>
+                         <form:errors path="password"></form:errors>
+                     </div>
+                 </spring:bind>
+
+                 <spring:bind path="passwordConfirm">
+                     <div class="form-group ${status.error ? 'has-error' : ''}">
+                         <form:input type="password" path="passwordConfirm" class="form-control"
+                                     placeholder="Confirm your password"></form:input>
+                         <form:errors path="passwordConfirm"></form:errors>
+                     </div>
+                 </spring:bind>
+                 <spring:bind path="email">
+                                 <div class="form-group ${status.error ? 'has-error' : ''}">
+                                     <form:input type="email" path="email" class="form-control"
+                                                 placeholder="email"></form:input>
+                                     <form:errors path="email"></form:errors>
+                                 </div>
+                 </spring:bind>
          <h4 class="text-center"><a href="${contextPath}/filelist">view list of Files</a></h4>
          <h4 class="text-center"><a href="${contextPath}/changelstyle">Change Learning styles</a></h4>
     </c:if>
