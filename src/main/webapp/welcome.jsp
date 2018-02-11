@@ -16,6 +16,7 @@
     <title>Create an account</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -24,22 +25,43 @@
     <![endif]-->
 </head>
 <body>
-<div class="container">
 
-    <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <form id="logoutForm" method="POST" action="${contextPath}/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <img id="logo-main" src="${contextPath}/images/al_logo.png" width="200" height="100px" alt="Logo Thing main logo">
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="${contextPath}/userprofile">User Profile</a></li>
+      <li><a href="${contextPath}/questionnaire">Questionnaire</a></li>
+      <li><a href="${contextPath}/upload">Upload File</a></li>
+      <li><a class="active" href="${contextPath}/list_documents">My Documents</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a id ="logoutId" href=""><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+       <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                  <input class="glyphicon glyphicon-log-in" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+          </form>
+    </ul>
+  </div>
+</nav>
 
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
 
-        <h4 class="text-center"><a href="${contextPath}/questionnaire">Questionnaire</a></h4>
-         <h4 class="text-center"><a href="${contextPath}/upload">Upload File</a></h4>
-         <h4 class="text-center"><a href="${contextPath}/userprofile">User Profile</a></h4>
-    </c:if>
 
-</div>
-<!-- /container -->
+
+
+<script>
+window.onload=function() {
+   document.getElementById("logoutId").onclick=function() {
+     document.getElementById("logoutForm").submit();
+     return false;
+   }
+ }
+</script>
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>

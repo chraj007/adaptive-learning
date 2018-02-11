@@ -27,10 +27,11 @@
 <jsp:include page="welcome.jsp" />
 <div class="container" style="padding-top:100px;">
 
-    <form:form method="POST" action="/upload" enctype="multipart/form-data">
-        <input type="file" name="file" /><br/><br/>
-        <input type="submit" value="Submit" class="file btn btn-lg btn-primary"/>
-    </form:form>
+
+   <object data='${contextPath}/documents/${userDocument.filePath}/${userDocument.documentTitle}#toolbar=1'
+           type='application/pdf'
+           width='100%'
+           height='700px'>
 
 </div>
 <!-- /container -->

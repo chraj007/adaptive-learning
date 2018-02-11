@@ -27,10 +27,29 @@
 <jsp:include page="welcome.jsp" />
 <div class="container" style="padding-top:100px;">
 
-    <form:form method="POST" action="/upload" enctype="multipart/form-data">
-        <input type="file" name="file" /><br/><br/>
-        <input type="submit" value="Submit" class="file btn btn-lg btn-primary"/>
-    </form:form>
+
+   <table class="table table-hover">
+       <thead>
+         <tr>
+           <th>S.No</th>
+           <th>Title</th>
+           <th>Uploaded At</th>
+           <th>Action</th>
+         </tr>
+       </thead>
+       <tbody>
+
+       <c:forEach var="userDoc" items="${userDocuments}" varStatus="document">
+                <tr>
+                  <td>${document.index+1}</td>
+                  <td>${userDoc.documentTitle}</td>
+                  <td>${userDoc.uploadedAt}</td>
+                  <td><a href="${contextPath}/viewDoc/${userDoc.id}">View</a></td>
+                </tr>
+           </c:forEach>
+
+       </tbody>
+     </table>
 
 </div>
 <!-- /container -->

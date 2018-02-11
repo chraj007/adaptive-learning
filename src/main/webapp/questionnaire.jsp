@@ -26,6 +26,7 @@
 </head>
 
 <body>
+<jsp:include page="welcome.jsp" />
 
 <div class="container">
 <span>${message}</span>

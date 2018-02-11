@@ -17,6 +17,8 @@
     <title>UserProfile</title>
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -25,6 +27,7 @@
     <![endif]-->
 </head>
 <body>
+<jsp:include page="welcome.jsp" />
 <div class="container">
 
         <form:form method="POST" modelAttribute="userProfileForm" class="form-horizontal">
