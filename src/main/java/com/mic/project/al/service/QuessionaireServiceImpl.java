@@ -5,9 +5,6 @@ import com.mic.project.al.repository.QuesionaireRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by rchejerla on 28/12/17.
- */
 @Service
 public class QuessionaireServiceImpl implements QuessionaireService {
     @Autowired

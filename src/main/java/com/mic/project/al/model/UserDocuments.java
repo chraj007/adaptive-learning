@@ -2,10 +2,6 @@ package com.mic.project.al.model;
 
 import javax.persistence.*;
 
-/**
- * Created by rchejerla on 11/02/18.
- */
-@Entity
 @Table(name = "user_documents")
 public class UserDocuments {
     @Id
