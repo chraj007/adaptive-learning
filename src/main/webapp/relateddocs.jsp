@@ -24,34 +24,29 @@
 </head>
 
 <body>
-<jsp:include page="welcome.jsp" />
+<div class="container" style="padding-top:100px;">
 
-<table width=100% height=100%>
+   <table class="table table-hover">
+       <thead>
+         <tr>
+           <th>S.No</th>
+           <th>Title</th>
+         </tr>
+       </thead>
+       <tbody>
 
-<tr><td width=70%>
-<object data='${contextPath}${userDocument.filePath}/${userDocument.documentTitle}#toolbar=1'
-                         type='application/pdf'
-                         width='100%'
-                         height='700px'>
-                     </object>
-
-</td>
-<td width=30%>
-        <ul>
-       <c:forEach var="relDoc" items="${yt}" varStatus="document">
-                <li>
-                  <a href="${relDoc.url}">${relDoc.title}</a>
-                </li>
+       <c:forEach var="relDoc" items="${relatedDocuments}" varStatus="document">
+                <tr>
+                  <td>${document.index+1}</td>
+                  <td>${relDoc.title}</td>
+                </tr>
            </c:forEach>
 
+       </tbody>
+     </table>
 
-     </ul>
-</td></tr>
-
-</table>
-
-
-
+</div>
+<!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>

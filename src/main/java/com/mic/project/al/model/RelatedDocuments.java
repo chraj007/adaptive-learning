@@ -7,6 +7,8 @@ import java.io.Serializable;
 @Table(name = "related_documents")
 public class RelatedDocuments implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "title")
     private String title;
@@ -20,6 +22,12 @@ public class RelatedDocuments implements Serializable {
     private String thumbNailUrl;
     @Column(name = "docId")
     private String docId;
+    @Column(name = "original_doc_id")
+    private long originalDocId;
+
+
+    public RelatedDocuments() {
+    }
 
     public RelatedDocuments(String title, String description, String type, String url, String thumbNailUrl, String docId) {
         this.title = title;
@@ -30,8 +38,6 @@ public class RelatedDocuments implements Serializable {
         this.docId = docId;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -86,6 +92,14 @@ public class RelatedDocuments implements Serializable {
 
     public void setDocId(String docId) {
         this.docId = docId;
+    }
+
+    public long getOriginalDocId() {
+        return originalDocId;
+    }
+
+    public void setOriginalDocId(long originalDocId) {
+        this.originalDocId = originalDocId;
     }
 
     @Override

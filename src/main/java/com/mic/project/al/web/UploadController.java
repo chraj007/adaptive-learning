@@ -4,10 +4,16 @@ package com.mic.project.al.web;
  * Created by veena on 1/1/18.
  */
 
+import com.google.common.collect.Lists;
+import com.mic.project.al.model.RelatedDocuments;
 import com.mic.project.al.model.User;
 import com.mic.project.al.model.UserDocuments;
+import com.mic.project.al.repository.RelatedDocumentsRepository;
 import com.mic.project.al.repository.UserDocumentsRepository;
+import com.mic.project.al.service.RelatedDocService;
+import com.mic.project.al.service.UserDocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletContext;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,7 +34,9 @@ import java.util.List;
 public class UploadController {
 
     @Autowired
-    private UserDocumentsRepository userDocumentsRepository;
+    private UserDocumentService userDocumentService;
+    @Autowired
+    private RelatedDocService relatedDocService;
     //Save the uploaded file to this folder
     @Autowired
     ServletContext context;
@@ -56,12 +65,12 @@ public class UploadController {
             org.springframework.security.core.userdetails.User userprofile = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
             String destPath = "/documents/" + userprofile.getUsername();
-            Path path = Paths.get(context.getContextPath() + "src/main/webapp/documents/" + userprofile.getUsername()+"/" + file.getOriginalFilename());
+            Path path = Paths.get(context.getContextPath() + "src/main/webapp/documents/" + userprofile.getUsername() + "/" + file.getOriginalFilename());
             Files.write(path, bytes);
             UserDocuments userDocuments = new UserDocuments(user.getUsername(),
-                    destPath, file.getOriginalFilename(), LocalDateTime.now().toString());
+                    destPath, file.getOriginalFilename(), LocalDateTime.now().toString(), path.toAbsolutePath().toString());
 
-            userDocumentsRepository.save(userDocuments);
+            userDocumentService.save(userDocuments);
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
 
@@ -82,7 +91,7 @@ public class UploadController {
     @RequestMapping(value = "/list_documents", method = RequestMethod.GET)
     public String userProfile(Model model) {
         org.springframework.security.core.userdetails.User userprofile = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<UserDocuments> userDocuments = userDocumentsRepository.findByUserName(userprofile.getUsername());
+        List<UserDocuments> userDocuments = userDocumentService.findByUserName(userprofile.getUsername());
         model.addAttribute("userDocuments", userDocuments);
         return "userDocuments";
     }
@@ -90,8 +99,11 @@ public class UploadController {
     @RequestMapping(value = "/viewDoc/{id}", method = RequestMethod.GET)
     public String viewDoc(Model model, @PathVariable(name = "id") long id) {
         org.springframework.security.core.userdetails.User userprofile = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserDocuments userDocument = userDocumentsRepository.findOne(id);
+        UserDocuments userDocument = userDocumentService.findOne(id);
         model.addAttribute("userDocument", userDocument);
+        Pair<List<RelatedDocuments>, List<RelatedDocuments>> byUserName = relatedDocService.findByUserName(userprofile.getUsername(), id);
+        model.addAttribute("yt", byUserName.getFirst());
+        model.addAttribute("text", byUserName.getSecond());
         return "viewDocument";
     }
 

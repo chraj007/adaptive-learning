@@ -7,4 +7,7 @@ import java.util.List;
 
 public interface UserDocumentsRepository extends CrudRepository<UserDocuments, Long> {
     List<UserDocuments> findByUserName(String userName);
+
+    List<UserDocuments> findByProfilingDone(boolean profileDone);
+
 }

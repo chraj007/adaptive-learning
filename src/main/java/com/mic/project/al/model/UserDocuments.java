@@ -2,6 +2,7 @@ package com.mic.project.al.model;
 
 import javax.persistence.*;
 
+@Entity
 @Table(name = "user_documents")
 public class UserDocuments {
     @Id
@@ -15,15 +16,22 @@ public class UserDocuments {
     private String documentTitle;
     @Column(name = "uploaded_at", nullable = false)
     private String uploadedAt;
+    @Column(name = "is_profiling_done")
+    private boolean profilingDone;
+    @Column(name = "keywords")
+    private String keywords;
+    @Column(name = "absolute_path")
+    private String absolutePath;
 
     public UserDocuments() {
     }
 
-    public UserDocuments(String userName, String filePath, String documentTitle, String uploadedAt) {
+    public UserDocuments(String userName, String filePath, String documentTitle, String uploadedAt, String absolutePath) {
         this.userName = userName;
         this.filePath = filePath;
         this.documentTitle = documentTitle;
         this.uploadedAt = uploadedAt;
+        this.absolutePath = absolutePath;
     }
 
     public Long getId() {
@@ -66,6 +74,30 @@ public class UserDocuments {
         this.uploadedAt = uploadedAt;
     }
 
+    public boolean isProfilingDone() {
+        return profilingDone;
+    }
+
+    public void setProfilingDone(boolean profilingDone) {
+        this.profilingDone = profilingDone;
+    }
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+
+    public String getAbsolutePath() {
+        return absolutePath;
+    }
+
+    public void setAbsolutePath(String absolutePath) {
+        this.absolutePath = absolutePath;
+    }
+
     @Override
     public String toString() {
         return "UserDocuments{" +
@@ -74,6 +106,9 @@ public class UserDocuments {
                 ", filePath='" + filePath + '\'' +
                 ", documentTitle='" + documentTitle + '\'' +
                 ", uploadedAt='" + uploadedAt + '\'' +
+                ", profilingDone=" + profilingDone +
+                ", keywords='" + keywords + '\'' +
+                ", absolutePath='" + absolutePath + '\'' +
                 '}';
     }
 }
