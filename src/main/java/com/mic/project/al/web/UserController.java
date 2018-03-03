@@ -76,7 +76,7 @@ public class UserController {
     public String questionnaire(@ModelAttribute Questionnaire questionnaireForm, Model model) {
         org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         questionnaireForm.setUserName(user.getUsername());
-        quessionaireService.save(questionnaireForm);
+        quessionaireService.save(questionnaireForm, user.getUsername());
         model.addAttribute("message", "Successfully submitted quessionaire");
         model.addAttribute("questionnaireForm", questionnaireForm);
         return "questionnaire";

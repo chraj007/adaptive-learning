@@ -28,17 +28,16 @@
 </head>
 <body>
 <jsp:include page="welcome.jsp" />
-<div class="container">
+<div class="container" style="padding-top:100px;">
 
-        <form:form method="POST" modelAttribute="userProfileForm" class="form-horizontal">
+        <form:form method="POST" modelAttribute="userProfileForm" class="form-signin">
             <form:hidden path="id" />
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-            <h2>${pageContext.request.userPrincipal.name}</h2><br>
-
              <spring:bind path="username">
+
                   <div class="form-group ${status.error ? 'has-error' : ''}">
-                  <label class="control-label col-sm-2" for="username">Username:</label>
+                  <label class="control-label" for="username">Username</label>
                       <form:input type="text" path="username" class="form-control" placeholder="Username"
                                   autofocus="true"></form:input>
                       <form:errors path="username"></form:errors>
@@ -47,28 +46,30 @@
 
 
               <spring:bind path="firstname">
-              <label class="control-label col-sm-2" for="firstname">First Name:</label>
+
                   <div class="form-group ${status.error ? 'has-error' : ''}">
-                      <form:input type="text" path="firstname" class="form-control" placeholder="firstname"></form:input>
+                  <label class="control-label" for="firstname">First Name</label>
+                      <form:input type="text" path="firstname" class="form-control" placeholder="Firstname"></form:input>
                       <form:errors path="firstname"></form:errors>
                   </div>
               </spring:bind>
 
               <spring:bind path="lastname">
-                    <label class="control-label col-sm-2" for="lastname">Last Name:</label>
+
                         <div class="form-group ${status.error ? 'has-error' : ''}">
-                            <form:input type="text" path="lastname" class="form-control" placeholder="lastname"></form:input>
+                        <label class="control-label" for="lastname">Last Name</label>
+                            <form:input type="text" path="lastname" class="form-control" placeholder="Lastname"></form:input>
                             <form:errors path="lastname"></form:errors>
                         </div>
                 </spring:bind>
 
 
               <spring:bind path="email">
-                  <div class="form-group ${status.error ? 'has-error' : ''}">
-                    <label class="control-label col-sm-2" for="email">Email:</label>
 
+                  <div class="form-group ${status.error ? 'has-error' : ''}">
+                  <label class="control-label" for="email">Email</label>
                       <form:input type="email" path="email" class="form-control"
-                                  placeholder="email"></form:input>
+                                  placeholder="Email"></form:input>
                       <form:errors path="email"></form:errors>
                   </div>
               </spring:bind>
@@ -79,8 +80,6 @@
 
        </form:form>
        <h4 class="text-center"><a href="${contextPath}/password">change password</a></h4>
-       <h4 class="text-center"><a href="${contextPath}/filelist">view list of Files</a></h4>
-       <h4 class="text-center"><a href="${contextPath}/changelstyle">Change Learning styles</a></h4>
 
 </div>
 <!-- /container -->

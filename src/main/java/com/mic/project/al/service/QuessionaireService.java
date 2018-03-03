@@ -6,6 +6,6 @@ public interface QuessionaireService {
 
     Questionnaire findByUserName(String userName);
 
-    void save(Questionnaire questionnaireForm);
+    void save(Questionnaire questionnaireForm, String userName);
 
 }

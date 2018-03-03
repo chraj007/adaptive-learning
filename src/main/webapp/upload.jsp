@@ -27,7 +27,9 @@
 <jsp:include page="welcome.jsp" />
 <div class="container" style="padding-top:100px;">
 
-    <form:form method="POST" action="/upload" enctype="multipart/form-data">
+
+    <form:form method="POST" action="/upload" enctype="multipart/form-data" class="form-signin">
+    <h2 class="form-signin-radio">Upload File</h2>
         <input type="file" name="file" /><br/><br/>
         <input type="submit" value="Submit" class="file btn btn-lg btn-primary"/>
     </form:form>

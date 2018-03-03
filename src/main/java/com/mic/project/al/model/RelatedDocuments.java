@@ -2,6 +2,7 @@ package com.mic.project.al.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Comparator;
 
 @Entity
 @Table(name = "related_documents")
@@ -24,7 +25,18 @@ public class RelatedDocuments implements Serializable {
     private String docId;
     @Column(name = "original_doc_id")
     private long originalDocId;
+    @Column(name = "length")
+    private String length;
+    @Column(name = "difficulty_level")
+    private String difficultyLevel;
+    @Column(name = "interactivity_level")
+    private String interactivityLevel;
 
+    @Column(name = "duration")
+    private long duration;
+
+    @Column(name = "rank")
+    private int rank = 0;
 
     public RelatedDocuments() {
     }
@@ -36,6 +48,46 @@ public class RelatedDocuments implements Serializable {
         this.url = url;
         this.thumbNailUrl = thumbNailUrl;
         this.docId = docId;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    public long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
+    }
+
+    public String getLength() {
+        return length;
+    }
+
+    public void setLength(String length) {
+        this.length = length;
+    }
+
+    public String getDifficultyLevel() {
+        return difficultyLevel;
+    }
+
+    public void setDifficultyLevel(String difficultyLevel) {
+        this.difficultyLevel = difficultyLevel;
+    }
+
+    public String getInteractivityLevel() {
+        return interactivityLevel;
+    }
+
+    public void setInteractivityLevel(String interactivityLevel) {
+        this.interactivityLevel = interactivityLevel;
     }
 
     public Long getId() {
@@ -101,6 +153,13 @@ public class RelatedDocuments implements Serializable {
     public void setOriginalDocId(long originalDocId) {
         this.originalDocId = originalDocId;
     }
+
+
+    public static Comparator<RelatedDocuments> relatedDocumentsComparator = new Comparator<RelatedDocuments>() {
+        public int compare(RelatedDocuments s1, RelatedDocuments s2) {
+            return s2.getRank() - s1.getRank();
+        }
+    };
 
     @Override
     public String toString() {
