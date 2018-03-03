@@ -34,6 +34,8 @@
            <th>S.No</th>
            <th>Title</th>
            <th>Uploaded At</th>
+           <th>Profiling Status</th>
+           <th>Keywords</th>
            <th>Action</th>
          </tr>
        </thead>
@@ -44,6 +46,8 @@
                   <td>${document.index+1}</td>
                   <td>${userDoc.documentTitle}</td>
                   <td>${userDoc.uploadedAt}</td>
+                  <td>${userDoc.profilingDone}</td>
+                  <td>${userDoc.keywords}</td>
                   <td><a href="${contextPath}/viewDoc/${userDoc.id}">View</a></td>
                 </tr>
            </c:forEach>
@@ -52,6 +56,18 @@
      </table>
 
 </div>
+
+<script>
+window.onload=function() {
+    jQuery('.nav li').removeClass('active');
+    jQuery("#mdocs").addClass('active');
+
+    document.getElementById("logoutId").onclick=function() {
+         document.getElementById("logoutForm").submit();
+         return false;
+       }
+}
+</script>
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>

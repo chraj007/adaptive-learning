@@ -26,17 +26,17 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" style="background-color:#189;">
   <div class="container-fluid">
     <div class="navbar-header">
       <img id="logo-main" src="${contextPath}/images/al_logo.png" width="200" height="100px" alt="Logo Thing main logo">
     </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="${contextPath}/userprofile">User Profile</a></li>
-      <li><a href="${contextPath}/questionnaire">Questionnaire</a></li>
-      <li><a href="${contextPath}/upload">Upload File</a></li>
-      <li><a class="active" href="${contextPath}/list_documents">My Documents</a></li>
+    <ul class="nav navbar-nav" style="padding-top: 50px;">
+      <li id="home"><a style="font-family: -webkit-pictograph;font-size: 20px;font-variant-caps: petite-caps;" href="${contextPath}/">Home</a></li>
+      <li id="uprofile"><a style="font-family: -webkit-pictograph;font-size: 20px;font-variant-caps: petite-caps;" href="${contextPath}/userprofile">User Profile</a></li>
+      <li id="ques"><a style="font-family: -webkit-pictograph;font-size: 20px;font-variant-caps: petite-caps;" href="${contextPath}/questionnaire">Questionnaire</a></li>
+      <li id="upfile"><a style="font-family: -webkit-pictograph;font-size: 20px;font-variant-caps: petite-caps;" href="${contextPath}/upload">Upload File</a></li>
+      <li id="mdocs"><a style="font-family: -webkit-pictograph;font-size: 20px;font-variant-caps: petite-caps;" href="${contextPath}/list_documents">My Documents</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a id ="logoutId" href=""><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -58,11 +58,14 @@ window.onload=function() {
      return false;
    }
  }
+
+
 </script>
 
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+<script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
 </body>
 </html>

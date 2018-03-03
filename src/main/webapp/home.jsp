@@ -24,38 +24,29 @@
 </head>
 
 <body>
-<div class="container">
-<span>${message}</span>
+<jsp:include page="welcome.jsp" />
 
-<div class="container">
-        <h1>Spring Boot-Upload Status</h1>
-        <div th:if="${messages}">
-            <h2 th:if text="${messages}"/>
-        </div>
-<!-- /container -->
+<div class="container" style="padding-top:100px;"  align="center">
+    <table border="0">
+    <tr><td><h3><b>Total Documents</b></h3></td><td align="center"><h3>${docsUploaded}</h3></td></tr>
+    <tr><td><h3><b>Learning Style</b></h3></td><td align="center"><h3>${learningStyle}</h3></td></tr>
+    </table>
+</div>
 <script>
 window.onload=function() {
-    jQuery('.nav li').removeClass('active');
-    jQuery("#upfile").addClass('active');
+           jQuery('.nav li').removeClass('active');
+           jQuery("#home").addClass('active');
+            document.getElementById("logoutId").onclick=function() {
+                    document.getElementById("logoutForm").submit();
+                    return false;
+                  }
 }
- document.getElementById("logoutId").onclick=function() {
-         document.getElementById("logoutForm").submit();
-         return false;
-       }
 </script>
+
+<!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
 
 

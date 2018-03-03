@@ -35,6 +35,17 @@
     </form:form>
 
 </div>
+
+<script>
+window.onload=function() {
+    jQuery('.nav li').removeClass('active');
+    jQuery("#upfile").addClass('active');
+     document.getElementById("logoutId").onclick=function() {
+             document.getElementById("logoutForm").submit();
+             return false;
+           }
+}
+</script>
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>

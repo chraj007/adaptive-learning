@@ -56,7 +56,8 @@ public class RelatedDocServiceImpl implements RelatedDocService {
         }
         Collections.sort(yts, RelatedDocuments.relatedDocumentsComparator);
         Collections.sort(texts, RelatedDocuments.relatedDocumentsComparator);
-        return Pair.of(yts.subList(0, 9), texts.subList(0, 9));
+
+        return Pair.of(yts.subList(0, Math.min(9, yts.size())), texts.subList(0, Math.min(9, texts.size())));
     }
 
     private int getTheoristRank(RelatedDocuments relatedDocument) {

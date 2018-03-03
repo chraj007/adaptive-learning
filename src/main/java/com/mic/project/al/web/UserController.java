@@ -2,6 +2,7 @@ package com.mic.project.al.web;
 
 import com.mic.project.al.model.Questionnaire;
 import com.mic.project.al.model.User;
+import com.mic.project.al.repository.UserDocumentsRepository;
 import com.mic.project.al.service.QuessionaireService;
 import com.mic.project.al.service.SecurityService;
 import com.mic.project.al.service.UserService;
@@ -28,6 +29,9 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+
+    @Autowired
+    private UserDocumentsRepository userDocumentsRepository;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -101,7 +105,16 @@ public class UserController {
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
-        return "welcome";
+        org.springframework.security.core.userdetails.User userprofile = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Questionnaire byUserName = quessionaireService.findByUserName(userprofile.getUsername());
+        if (byUserName == null) {
+            return "redirect:/questionnaire";
+        }
+
+        model.addAttribute("docsUploaded", userDocumentsRepository.findByUserName(userprofile.getUsername()).size());
+        model.addAttribute("learningStyle", byUserName.getLearningStyle());
+
+        return "home";
     }
 
 

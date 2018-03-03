@@ -37,20 +37,80 @@
 
 </td>
 <td width=30%>
+
+
+
+
+<ul class="nav nav-pills" align ="center">
+  <li id="txtLi" class="active"><a href="javascript:void(0);" onclick="return showText();" id="textLink">Text Materials</a></li>
+  <li id="vidLi"><a href="javascript:void(0);"  onclick="return showVideos();" id="videoLink">Video Material</a></li>
+</ul>
+<br/>
+<br/>
+<div id="txtRms" class="pre-scrollable" style="max-height: 75vh;">
         <ul>
-       <c:forEach var="relDoc" items="${yt}" varStatus="document">
+       <c:forEach var="relDoc" items="${text}" varStatus="document">
                 <li>
-                  <a href="${relDoc.url}">${relDoc.title}</a>
+                  <a href="${relDoc.url}" target="_blank">${relDoc.title}</a>
+                  <span class="text-truncate"><p style="font-size:12px;font-style:oblique;">${relDoc.description}</p></span>
                 </li>
            </c:forEach>
 
 
-     </ul>
+      </ul>
+      </div>
+
+      <div id="videoRms" style="display:none;max-height: 75vh;" class="pre-scrollable">
+        <ul>
+             <c:forEach var="relDoc" items="${yt}" varStatus="document">
+                      <li>
+                        <a href="https://www.youtube.com/watch?v=${relDoc.url}" data-toggle="tooltip" title= "${relDoc.description}" target="_blank">${relDoc.title}</a>
+                        <iframe width="300" height="150" src="https://www.youtube.com/embed/${relDoc.url}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+                      </li>
+                 </c:forEach>
+
+
+            </ul>
+      </div>
 </td></tr>
 
 </table>
 
 
+<script>
+
+    function showText() {
+    document.getElementById("vidLi").classList.remove("active");
+    document.getElementById("txtLi").classList.add("active");
+
+        if(document.getElementById('txtRms').style.display=='none') {
+            document.getElementById('txtRms').style.display='block';
+             document.getElementById('videoRms').style.display='none';
+        }
+        return false;
+    }
+    function showVideos() {
+    document.getElementById("txtLi").classList.remove("active");
+    document.getElementById("vidLi").classList.add("active");
+        if(document.getElementById('videoRms').style.display=='none') {
+            document.getElementById('videoRms').style.display='block';
+            document.getElementById('txtRms').style.display='none';
+        }
+        return false;
+    }
+
+   window.onload=function() {
+       jQuery('.nav li').removeClass('active');
+       jQuery("#mdocs").addClass('active');
+        document.getElementById("txtLi").classList.add("active");
+       document.getElementById("logoutId").onclick=function() {
+            document.getElementById("logoutForm").submit();
+            return false;
+          }
+    }
+
+
+</script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
